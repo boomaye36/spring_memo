@@ -30,4 +30,12 @@ public class TestController {
 		List<Map<String, Object>> result = testDAO.selectTestList();
 		return result;
 	}
+	@RequestMapping("/memoSignIn")
+	public String signin() {
+		return "test/signin";
+	}
+	@RequestMapping("/memoSignUp")
+	public String signup() {
+		return "test/signup";
+	}
 }
