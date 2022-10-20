@@ -61,7 +61,9 @@
 				
 			</table>
 			<div class="d-flex align-content-center justify-items-center">
+			<div class="d-flex justify-content-center">
 			<button type="button" id="signUpBtn" class="btn btn-info mt-5">회원가입 </button>
+			</div>
 			</div>
 		</section>
 	</div>
