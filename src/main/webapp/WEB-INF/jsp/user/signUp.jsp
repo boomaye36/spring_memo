@@ -126,7 +126,7 @@ $(document).ready(function(){
 		}
 		
 		// 1) submit
-		$(this)[0].submit();//0번째에 있는 submit을 수행 할 것이다.
+		//$(this)[0].submit();//0번째에 있는 submit을 수행 할 것이다.
 		//submit 이후에 다른 화면으로 넘길 떄 사용 (action 주소 -> 뷰화면)
 		// 2) ajax
 		let url = $(this).attr('action');
