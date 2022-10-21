@@ -34,6 +34,7 @@
 			<jsp:include page="../${viewName}.jsp"/>
 		</section>
 		<footer class="bg-warning">
+		
 			<jsp:include page="../include/footer.jsp" />
 		</footer>
 			
