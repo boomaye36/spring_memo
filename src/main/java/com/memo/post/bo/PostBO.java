@@ -12,12 +12,16 @@ import com.memo.post.model.Post;
 
 @Service
 public class PostBO {
+	
 	@Autowired
 	private PostDAO postDAO;
 	
 	@Autowired
 	private FileManagerService fileManagerService;
-	public int addPost(int userId, String userLoginId, String subject, String content, MultipartFile file) {
+
+	public int addPost(int userId, String userLoginId, 
+			String subject, String content, MultipartFile file) {
+		
 		String imagePath = null;
 		if (file != null) {
 			// 파일이 있을 때만 업로드 처리 => 서버에 업로드
@@ -27,8 +31,12 @@ public class PostBO {
 		// db insert => dao
 		return postDAO.insertPost(userId, subject, content, imagePath);
 	}
-	public List<Post> getPostInfo(){
-		return postDAO.selectPostInfo();
-				
+	
+	public List<Post> getPostListByUserId(int userId) {
+		return postDAO.selectPostListByUserId(userId);
 	}
+	
+	public Post getPostByPostIdAndUserId(int postId, int userId) {
+		return postDAO.selectPostByPostIdAndUserId(postId, userId);
 	}
+}

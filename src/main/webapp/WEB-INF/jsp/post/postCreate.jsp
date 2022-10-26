@@ -71,7 +71,7 @@ $(document).ready(function(){
 			, success:function(data){
 				if (data.code == 100){ // 성공
 					alert("메모가 저장되었습니다.");
-					location.href="/post/post_detail_view"
+					location.href="/post/post_list_view"
 				}else{
 					alert(data.errorMessage); // 실패
 				}

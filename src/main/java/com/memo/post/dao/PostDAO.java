@@ -8,12 +8,17 @@ import org.springframework.stereotype.Repository;
 import com.memo.post.model.Post;
 
 @Repository
-public interface PostDAO{ 
+public interface PostDAO {
+
 	public int insertPost(
-			@Param("userId") int userId,
+			@Param("userId") int userId, 
 			@Param("subject") String subject, 
 			@Param("content") String content, 
-			@Param("imagePath") String imagePath); 
-	public List<Post> selectPostInfo();
-
+			@Param("imagePath") String imagePath);
+	
+	public List<Post> selectPostListByUserId(int userId);
+	
+	public Post selectPostByPostIdAndUserId(
+			@Param("postId") int postId, 
+			@Param("userId") int userId);
 }

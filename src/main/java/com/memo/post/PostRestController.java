@@ -32,7 +32,7 @@ public class PostRestController {
 		
 		
 		// DB insert
-		int row = postBO.addPost(0, userLoginId, subject, content, file);
+		int row = postBO.addPost(userId, userLoginId, subject, content, file);
 		Map<String, Object>result = new HashMap<>();
 		if (row > 0) {
 			result.put("code", 100); // 성공
