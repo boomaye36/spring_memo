@@ -25,8 +25,7 @@ public class PostBO {
 		}
 		
 		// db insert => dao
-		//return postDAO.insertPost(userId, subject, content, imagePath);
-		return 1;
+		return postDAO.insertPost(userId, subject, content, imagePath);
 	}
 	public List<Post> getPostInfo(){
 		return postDAO.selectPostInfo();

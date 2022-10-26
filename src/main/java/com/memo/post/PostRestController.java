@@ -30,6 +30,7 @@ public class PostRestController {
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		Integer userId = (Integer)session.getAttribute("userId");
 		
+		
 		// DB insert
 		int row = postBO.addPost(0, userLoginId, subject, content, file);
 		Map<String, Object>result = new HashMap<>();
