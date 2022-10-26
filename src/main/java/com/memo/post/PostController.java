@@ -1,10 +1,16 @@
 package com.memo.post;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.memo.post.bo.PostBO;
+import com.memo.post.model.Post;
 @RequestMapping("/post")
 
 @Controller
@@ -29,6 +35,21 @@ public class PostController {
 		
 		model.addAttribute("viewName", "post/postCreate");
 		return "template/layout";
-		
+	}
+	@Autowired
+	private PostBO postBO;
+	@RequestMapping("post_detail_view")
+	
+	public String postDetailView(HttpSession session, Model model) {
+		;
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/user/sign_in_view";
+		}
+		List<Post> post = postBO.getPostInfo();
+		model.addAttribute("result", post);
+		model.addAttribute("viewName", "post/postList");
+		return "template/layout";
+	
 	}
 }

@@ -34,7 +34,7 @@
 				<tr>
 					<th class="bg-secondary">* 이름   </th>
 					<td>
-						<input type="password" id="name" name="name" class="form-control"placeholder="이름을 입력하세요 ">
+						<input type="text" id="name" name="name" class="form-control"placeholder="이름을 입력하세요 ">
 						
 					</td>
 				</tr>

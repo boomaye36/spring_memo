@@ -1,12 +1,12 @@
-1 lines (28 sloc)  599 Bytes
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="d-flex justify-content-center">
 	<div class="w-50">
 		<h1>글 목록</h1>
-		
+
 		<table class="table">
 			<thead>
 				<tr>
@@ -17,15 +17,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				<c:forEach items="${result }" var="post">
+					<tr>
+						<td>${post.userId }</td>
+						<td>${post.subject }</td>
+						<td>${post.createdAt }</td>
+						<td>${post.updatedAt }</td>
+
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
-		
+
 		<div class="d-flex justify-content-end">
 			<a href="/post/post_create_view" class="btn btn-warning">글쓰기</a>
 		</div>

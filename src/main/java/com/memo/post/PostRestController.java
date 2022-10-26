@@ -1,6 +1,8 @@
 package com.memo.post;
 
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.memo.post.bo.PostBO;
+import com.memo.post.model.Post;
 @RequestMapping("/post")
 @RestController
 public class PostRestController {
@@ -41,4 +44,5 @@ public class PostRestController {
 		
 		return result;
 	}
+	
 }
