@@ -23,7 +23,11 @@ public interface PostDAO {
 			@Param("content") String content, 
 			@Param("imagePath") String imagePath);
 	
-	public List<Post> selectPostListByUserId(int userId);
+	public List<Post> selectPostListByUserId(
+			@Param("userId") int userId,
+			@Param("standardId") Integer standardId,
+			@Param("direction") String direction,
+			@Param("limit") int limit);
 	
 	public Post selectPostByPostIdAndUserId(
 			@Param("postId") int postId, 
@@ -32,4 +36,9 @@ public interface PostDAO {
 	public Post selectPostByPostId(int postId);
 	
 	public int deletePostByPostId(int postId);
+
+	public int selectPostIdByUserIdAndSort(
+			@Param("userId") int userId,
+			@Param("sort")String sort);
+
 }

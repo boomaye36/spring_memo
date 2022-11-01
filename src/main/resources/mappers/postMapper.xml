@@ -6,25 +6,25 @@
 	<insert id="insertPost" parameterType="map">
 		INSERT INTO `post`
 		(
-			`userId`
-			,`subject`
-			,`content`
-			,`imagePath`
-			,`createdAt`
-			,`updatedAt`
+		`userId`
+		,`subject`
+		,`content`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
 		)
 		VALUES
 		(
-			#{userId}
-			, #{subject}
-			, #{content}
-			, #{imagePath}
-			, NOW()
-			, NOW()
+		#{userId}
+		, #{subject}
+		, #{content}
+		, #{imagePath}
+		, NOW()
+		, NOW()
 		)
 	</insert>
-	
-	<select id="selectPostListByUserId" parameterType="int" resultType="com.memo.post.model.Post">
+
+	<select id="selectPostListByUserId" parameterType="map" resultType="com.memo.post.model.Post">
 		SELECT
 			`id`
 			,`userId`
@@ -37,59 +37,88 @@
 			`post`
 		WHERE
 			`userId` = #{userId}
+		<if test="direction == null">
 		ORDER BY `id` DESC
+		</if>
+		<if test="direction == 'next'">
+			<![CDATA[
+			AND `id` < #{standardId}
+			]]>
+		ORDER BY `id` DESC
+		</if>
+		<if test="direction == 'prev'">
+			<![CDATA[
+			AND `id` > #{standardId}
+			]]>
+		ORDER BY `id` ASC
+		</if>
+		LIMIT ${limit}
 	</select>
-	
-	<select id="selectPostByPostIdAndUserId" parameterType="map" resultType="com.memo.post.model.Post">
+
+	<select id="selectPostByPostIdAndUserId" parameterType="map"
+		resultType="com.memo.post.model.Post">
+		SELECT
+		`id`
+		,`userId`
+		,`subject`
+		,`content`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`post`
+		WHERE
+		`userId` = #{userId}
+		AND `id` =
+		#{postId}
+	</select>
+	<select id="selectPostIdByUserIdAndSort" parameterType="map" resultType="int">
 		SELECT
 			`id`
-			,`userId`
-			,`subject`
-			,`content`
-			,`imagePath`
-			,`createdAt`
-			,`updatedAt`
 		FROM
 			`post`
 		WHERE
 			`userId` = #{userId}
-			AND `id` = #{postId}
+		ORDER BY `id` ${sort}
+		LIMIT 1
 	</select>
-	<select id="selectPostByPostId" parameterType="int" resultType="com.memo.post.model.Post">
+	<select id="selectPostByPostId" parameterType="int"
+		resultType="com.memo.post.model.Post">
 		SELECT
-			`id`
-			,`userId`
-			,`subject`
-			,`content`
-			,`imagePath`
-			,`createdAt`
-			,`updatedAt`
+		`id`
+		,`userId`
+		,`subject`
+		,`content`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
 		FROM
-			`post`
+		`post`
 		WHERE
-			 `id` = #{postId}
+		`id` = #{postId}
 	</select>
-	<update id = "updatePost" parameterType="map">
+	<update id="updatePost" parameterType="map">
 		UPDATE `post`
 		SET
-			`subject` = #{subject}
-			, `content` = #{content}
-			, `updatedAt` = NOW()
-			<!-- imagePath가 있을 때만 수정한다. -->
-			<if test="imagePath != null">, `imagePath` = #{imagePath}
-			</if>
-			
+		`subject` = #{subject}
+		, `content` = #{content}
+		,
+		`updatedAt` = NOW()
+		<!-- imagePath가 있을 때만 수정한다. -->
+		<if test="imagePath != null">, `imagePath` = #{imagePath}
+		</if>
+
 		WHERE
-			`id` = #{postId}
-	
+		`id` = #{postId}
+
 	</update>
-	
-	<delete id="deletePostByPostId" parameterType="int" >
+
+	<delete id="deletePostByPostId" parameterType="int">
 		DELETE
-		FROM 
-			`post`
-		WHERE 
-			`id` = #{postId}
-		
+		FROM
+		`post`
+		WHERE
+		`id` = #{postId}
+
 	</delete>
 </mapper>
